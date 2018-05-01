@@ -1,0 +1,55 @@
+.card{
+    width: 50px;
+    height: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.angular{
+    background: url('./images/cards/angular.png') no-repeat;
+    background-size: contain;
+}
+
+.d3{
+    background: url('./images/cards/d3.png') no-repeat
+}
+
+.jenkins{
+    background: url('./images/cards/jenkins.png') no-repeat;
+    background-size: contain;
+}
+
+.postcss{
+    background: url('./images/cards/postcss.png') no-repeat;
+    background-size: contain;
+}
+
+.react{
+    background: url('./images/cards/react.png') no-repeat;
+    background-size: contain;
+}
+
+.redux{
+    background: url('./images/cards/redux.png') no-repeat;
+    background-size: contain;
+}
+
+.sass{
+    background: url('./images/cards/sass.png') no-repeat;
+    background-size: contain;
+}
+
+.supercharge{
+    background: url('./images/cards/supercharge.png') no-repeat;
+    background-size: contain;
+}
+
+.ts{
+    background: url('./images/cards/ts.png') no-repeat;
+    background-size: contain;
+}
+
+.webpack{
+    background: url('./images/cards/webpack.png') no-repeat;
+    background-size: contain;
+}
