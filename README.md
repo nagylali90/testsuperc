@@ -1,7 +1,7 @@
 Have to build the app:
 
-npm run react-scripts build
+npm run build
 
 And you can run with:
 
-npm run react-scripts start (http://localhost:5000)
+npm run start (http://localhost:5000)
