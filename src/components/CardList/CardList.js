@@ -17,33 +17,26 @@ class CardList extends Component {
         this.setNewCardList.bind(this);
     }
 
-    handleCardClick = () => (
-        this.setState((prevState, props) => {
-            console.log('almafa')
-            if (prevState.flippedCard) {
-                if (prevState.flippedCard === props) {
-                    prevState.cardList.forEach(item => {
-                        console.log(item)
-                    });
-                    return ({
-                        flippedCard: ''
-                    });
+    componentDidMount() {
+        this.setNewCardList(window.location.hash.split(':')[1])
+    }
 
-                } else {
-                    return ({flippedCard: ''});
-                }
+    handleCardClick = item => {
+        item.target.className = item.target.className.split('hide')[0].concat('clicked');
+        const clickedElements = document.getElementsByClassName('clicked');
+        if(clickedElements.length === 2) {
+            if (clickedElements[0].className === clickedElements[1].className) {
+                Array.prototype.forEach.call(clickedElements, item => item.className = item.className.concat(' paired'));
             } else {
-                return ({flippedCard: props})
+               // Array.prototype.forEach.call(clickedElements, item => item.className = item.className.replace('clicked', ' hide'));
             }
-        })
-    );
+        }
+        console.log(document.getElementsByClassName('card'));
+    };
 
     reset = () => {
-        console.log('reset');
-        console.log(this.state.cardList[0])
-
         this.setState({cardList: ''});
-        this.setNewCardList(this.state.cardNum)
+        this.setNewCardList(this.props.num)
     };
 
     setNewCardList = itemNum => {
@@ -52,6 +45,7 @@ class CardList extends Component {
             cards.push(
                 <Card
                     key={i}
+                    showBackround={0}
                     background={this.state.cardTypes[parseInt(i/2)]}
                     handleItemClick={ this.handleCardClick }
                 />

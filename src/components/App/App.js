@@ -16,11 +16,6 @@ class App extends Component {
     return (
         <HashRouter>
             <div>
-                <ul className="header">
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/game-welcome">GameWelcome</NavLink></li>
-                    <li><NavLink to="/game">Game</NavLink></li>
-                </ul>
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">MEMORY GAME</h1>
