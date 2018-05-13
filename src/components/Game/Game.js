@@ -17,14 +17,14 @@ class Game extends Component {
         this.handleCardListStateChange.bind(this)
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setState({cards: window.location.hash.split(':')[1]});
     }
 
     handleCardListStateChange = () => (
         this.setState((prevState, props) => {
             return ({
-                found: prevState.found++,
+                found: ++prevState.found,
             });
         })
     );
@@ -34,7 +34,8 @@ class Game extends Component {
     //     this.setState({cards: document.getElementsByTagName("select")[0].value})
     // };
     resetCardList = () => {
-        this.cardList.current.reset()
+        this.cardList.current.reset();
+        console.log(this.props.children)
         // this.setState({cards: document.getElementsByTagName("select")[0].value})
     };
 
@@ -52,7 +53,7 @@ class Game extends Component {
                         handleCardListStateChange={this.handleCardListStateChange}
                         ref={this.cardList}
                     />
-                    <p> { this.state.found}</p>
+                    <p> {this.state.found}</p>
                 </div>
             </div>);
     }

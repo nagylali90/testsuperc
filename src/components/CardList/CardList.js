@@ -26,9 +26,10 @@ class CardList extends Component {
         const clickedElements = document.getElementsByClassName('clicked');
         if(clickedElements.length === 2) {
             if (clickedElements[0].className === clickedElements[1].className) {
-                Array.prototype.forEach.call(clickedElements, item => item.className = item.className.concat(' paired'));
+                this.props.handleCardListStateChange()
+                Array.prototype.forEach.call(clickedElements, elem => elem.className = elem.className.replace('clicked', ' paired'));
             } else {
-               // Array.prototype.forEach.call(clickedElements, item => item.className = item.className.replace('clicked', ' hide'));
+               Array.prototype.forEach.call(clickedElements, elem => elem.className = elem.className.replace('clicked', ' hide'));
             }
         }
         console.log(document.getElementsByClassName('card'));
