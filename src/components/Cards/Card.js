@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../../images/supercharge-logo.svg';
 import './Card.css';
-import CardList from "../CardList/CardList";
 import PropTypes from 'prop-types';
 
 
@@ -9,29 +7,19 @@ class Card extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clicked: false,
             founded: false
         };
         this.clickHandler.bind(this)
     }
 
-    clickHandler = () => {
+    clickHandler = item => {
         console.log('handled');
-        this.setState({clicked: true});
-        this.props.handleItemClick(this.props.background);
+        this.props.handleItemClick(item);
     };
-
-    // setFound = () => {
-    //     if (!this.state.founded) {
-    //         this.setState({
-    //             founded: true
-    //         })
-    //     }
-    // }
     render() {
         return (
             <div
-                className={`card ${this.props.background} ${!this.state.clicked && 'hide'}`}
+                className={`card ${this.props.background} hide`}
                 onClick={this.clickHandler}
 
             >
@@ -41,7 +29,8 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-    handleItemClick: PropTypes.func.isRequired
+    handleItemClick: PropTypes.func.isRequired,
+    showBackround: PropTypes.number.isRequired
 };
 
 export default Card;

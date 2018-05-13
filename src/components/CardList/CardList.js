@@ -23,21 +23,34 @@ class CardList extends Component {
 
     handleCardClick = item => {
         item.target.className = item.target.className.split('hide')[0].concat('clicked');
-        const clickedElements = document.getElementsByClassName('clicked');
+        let clickedElements = document.getElementsByClassName('clicked');
         if(clickedElements.length === 2) {
             if (clickedElements[0].className === clickedElements[1].className) {
-                this.props.handleCardListStateChange()
-                Array.prototype.forEach.call(clickedElements, elem => elem.className = elem.className.replace('clicked', ' paired'));
+                clickedElements[0].className =  clickedElements[0].className.replace('clicked', 'paired');
+                item.target.className = item.target.className.replace('clicked', 'paired');
+                this.props.handleCardListStateChange();
+                // Array.prototype.forEach.call(clickedElements, elem => elem.className = elem.className.replace('clicked', 'paired'));
             } else {
-               Array.prototype.forEach.call(clickedElements, elem => elem.className = elem.className.replace('clicked', ' hide'));
+                setTimeout((item1, item2) => {
+                    item1.className = item1.className.replace('clicked', 'hide')
+                    item2.className = item2.className.replace('clicked', 'hide');
+                }, 2000, item.target,  clickedElements[0])
+
+                // Array.prototype.forEach.call( document.getElementsByClassName('clicked'), elem => elem.className = elem.className.replace('clicked', 'hide'));
             }
         }
         console.log(document.getElementsByClassName('card'));
     };
 
     reset = () => {
+        const cardDomElements = document.getElementsByClassName('card');
+        Array.prototype.forEach.call(cardDomElements, elem => {
+            const type = elem.className.split(' ')[1];
+            elem.className = `card ${type} hide`;
+        });
         this.setState({cardList: ''});
-        this.setNewCardList(this.props.num)
+        this.setNewCardList(this.props.num);
+        this.props.restart()
     };
 
     setNewCardList = itemNum => {
@@ -79,7 +92,8 @@ class CardList extends Component {
 }
 CardList.propTypes = {
     num: PropTypes.number.isRequired,
-    handleCardListStateChange: PropTypes.func.isRequired
+    handleCardListStateChange: PropTypes.func.isRequired,
+    restart: PropTypes.func.isRequired
 };
 
 export default CardList;

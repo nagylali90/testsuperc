@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Game.css';
-import { NavLink } from "react-router-dom";
 import CardList from "../CardList/CardList";
 
 class Game extends Component {
@@ -15,6 +14,7 @@ class Game extends Component {
         };
         this.resetCardList.bind(this);
         this.handleCardListStateChange.bind(this)
+        this.restart.bind(this)
     }
 
     componentWillMount() {
@@ -23,6 +23,9 @@ class Game extends Component {
 
     handleCardListStateChange = () => (
         this.setState((prevState, props) => {
+            if( prevState.found === ( prevState.cards/2 )-1) {
+                alert('YOU WIN!')
+            }
             return ({
                 found: ++prevState.found,
             });
@@ -30,13 +33,12 @@ class Game extends Component {
     );
 
 
-    // restart = () => {
-    //     this.setState({cards: document.getElementsByTagName("select")[0].value})
-    // };
+    restart = () => {
+        this.setState({found: 0})
+    };
     resetCardList = () => {
         this.cardList.current.reset();
         console.log(this.props.children)
-        // this.setState({cards: document.getElementsByTagName("select")[0].value})
     };
 
     checkMatch = (item1, item2) => (
@@ -52,6 +54,7 @@ class Game extends Component {
                         num={parseInt(this.state.cards)}
                         handleCardListStateChange={this.handleCardListStateChange}
                         ref={this.cardList}
+                        restart={this.restart}
                     />
                     <p> {this.state.found}</p>
                 </div>
